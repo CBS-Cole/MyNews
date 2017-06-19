@@ -1,8 +1,9 @@
-package com.cole.mynews.view.activity.base
+package com.cole.mynews.ui.activity.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
+import org.greenrobot.eventbus.Subscribe
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -13,6 +14,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
         getScreenPixel()
+        initPresenter()
         initView()
     }
 
@@ -27,5 +29,22 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun getLayoutId(): Int
 
     abstract fun initView()
+
+    abstract fun initPresenter()
+
+    /**
+     * 该页面是否注册eventBus
+     *
+     * @return true:注册; false:不注册
+     */
+    abstract fun isRegisterEventBusHere(): Boolean
+
+    /**
+     * 处理eventBus的方法
+     *
+     * @param event 管道通信发送过来的方法
+     */
+    @Subscribe
+    abstract fun eventArriving(event: Any)
 
 }
