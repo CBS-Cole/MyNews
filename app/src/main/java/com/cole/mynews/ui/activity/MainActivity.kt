@@ -11,6 +11,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, IMainView {
 
+    override fun getData(page: Int) {
+
+    }
+
     private var mMainPresenter: MainPresenter? = null
 
     override fun getLayoutId(): Int {
